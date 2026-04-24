@@ -102,7 +102,7 @@ def init_db():
 
 def _prune(conn, table: str, user_id: str):
     conn.execute(f"""
-        ALLOWED_TABLES = {"analysis_results", "predictions", "behavior_profiles"}
+        DELETE FROM {table}
         WHERE user_id = ?
           AND id NOT IN (
               SELECT id FROM {table}
