@@ -26,7 +26,7 @@ import datetime as _dt
 from flask import Flask, request, jsonify, abort
 from flask_cors import CORS
 
-
+import os
 import database as db
 from data_processing import parse_transactions, full_analysis
 from prediction       import spending_forecast
@@ -205,7 +205,9 @@ def demo_load():
     user = _require_user(user_id)
 
     try:
-        with open("sample_data.json", "r") as f:
+        file_path = os.path.join(os.path.dirname(__file__), "sample_data.json")
+
+        with open(file_path, "r") as f:
             data = json.load(f)
 
     except FileNotFoundError:
