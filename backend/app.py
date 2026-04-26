@@ -202,7 +202,15 @@ def demo_load():
     if not user_id:
         return _err("'user_id' required")
 
-    user = _require_user(user_id)
+    user = db.get_user(user_id)
+
+    if not user:
+        user = db.upsert_user(
+            user_id=user_id,
+            name="Demo User",
+            email=None,
+            monthly_budget=50000
+        )
 
     try:
         file_path = os.path.join(os.path.dirname(__file__), "sample_data.json")
