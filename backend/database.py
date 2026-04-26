@@ -199,18 +199,12 @@ def get_month_spend_so_far(user_id: str) -> float:
     return float(row["total"])
 
 
-def clear_transactions(user_id):
-    conn = get_conn()
-    cur = conn.cursor()
-
-    cur.execute(
-        "DELETE FROM transactions WHERE user_id = ?",
-        (user_id,)
-    )
-
-    conn.commit()
-    conn.close()
-
+def clear_transactions(user_id: str):
+    with get_conn() as conn:
+        conn.execute(
+            "DELETE FROM transactions WHERE user_id = ?",
+            (user_id,)
+        )
 
 # Analysis / Prediction / Behaviour profile 
 
