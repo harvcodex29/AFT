@@ -22,7 +22,10 @@ def _load_env():
 
 _load_env()
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+GEMINI_API_KEY = os.getenv(
+    "GEMINI_API_KEY",
+    "AIzaSyAHDeMWMvVgUcNiwVW9rWYCzLjbToUrDnQ"
+)
 GEMINI_API_URL = (
     "https://generativelanguage.googleapis.com/v1beta/models/"
     "gemini-2.0-flash:generateContent"
