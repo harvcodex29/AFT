@@ -352,7 +352,6 @@ def suggest():
         "status": "fallback",
         "error": str(exc)
     }
-
     result["behavior_context"] = {
         "spender_type": profile.get("spender_type"),
         "risk_score": profile.get("risk_score"),
