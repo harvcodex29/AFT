@@ -318,12 +318,12 @@ def suggest():
     if not user_id:
         return _err("Query param 'user_id' is required.")
 
-    user         = _require_user(user_id)
+    user = _require_user(user_id)
     transactions = _require_transactions(user_id)
 
     analysis = db.get_latest_analysis(user_id)
     forecast = db.get_latest_prediction(user_id)
-    profile  = db.get_latest_behavior_profile(user_id)
+    profile = db.get_latest_behavior_profile(user_id)
 
     if not analysis or not forecast or not profile:
         analysis, forecast, profile, _ = _run_full_pipeline(
@@ -338,20 +338,21 @@ def suggest():
         )
 
     except Exception as exc:
-    logger.exception("Gemini API failed: %s", exc)
+        logger.exception("Gemini API failed: %s", exc)
 
-    result = {
-        "suggestions": """
+        result = {
+            "suggestions": """
 1. Track weekly spending to improve awareness.
 2. Reduce unnecessary category expenses this month.
 3. Set a monthly savings target.
 4. Review recurring subscriptions.
 5. Stay consistent with budgeting.
 """,
-        "model": "fallback",
-        "status": "fallback",
-        "error": str(exc)
-    }
+            "model": "fallback",
+            "status": "fallback",
+            "error": str(exc)
+        }
+
     result["behavior_context"] = {
         "spender_type": profile.get("spender_type"),
         "risk_score": profile.get("risk_score"),
@@ -361,7 +362,6 @@ def suggest():
     }
 
     return _ok({"user_id": user_id, **result})
-
 
 # 5. GET /api/dashboard
 
