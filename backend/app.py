@@ -338,17 +338,20 @@ def suggest():
         )
 
     except Exception as exc:
-        logger.exception("Gemini API failed: %s", exc)
+    logger.exception("Gemini API failed: %s", exc)
 
-        result = {
-            "suggestions": [
-                "Track weekly spending to improve awareness.",
-                "Reduce unnecessary category expenses this month.",
-                "Set a fixed monthly savings target.",
-                "Review recurring subscriptions regularly."
-            ],
-            "source": "fallback"
-        }
+    result = {
+        "suggestions": """
+1. Track weekly spending to improve awareness.
+2. Reduce unnecessary category expenses this month.
+3. Set a monthly savings target.
+4. Review recurring subscriptions.
+5. Stay consistent with budgeting.
+""",
+        "model": "fallback",
+        "status": "fallback",
+        "error": str(exc)
+    }
 
     result["behavior_context"] = {
         "spender_type": profile.get("spender_type"),
