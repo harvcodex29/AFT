@@ -18,7 +18,7 @@ https://github.com/uddyalokb700-cmk/demo.git
 
 ---
 
-AFT (Autonomous Financial Twin) is a smart financial assistant designed to help people understand, improve and manage their financies efficiently.
+AFT (Autonomous Financial Twin) is a smart financial assistant designed to help people understand, improve and manage their finances efficiently.
 
 Millions of people—especially in emerging economies—face irregular income, rising expenses, hidden subscriptions, and zero access to meaningful financial planning tools.
 
